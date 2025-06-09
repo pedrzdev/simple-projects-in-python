@@ -1,0 +1,34 @@
+valor_compra = float(input("Digite o valor da compra: R$ "))
+valor_pago = float(input("Digite o valor pago: R$ "))
+
+def calcular_troco(valor_compra, valor_pago):
+    valor_compra = int(round(valor_compra * 100))
+    valor_pago = int(round(valor_pago * 100))
+
+    if valor_pago < valor_compra:
+        print("Erro: valor pago é menor que o valor da compra.")
+        return
+    elif valor_pago == valor_compra:
+        print("Pagamento exato.")
+        return
+    else:
+        troco = valor_pago - valor_compra
+        print(f"Troco: R${troco / 100:.2f}")
+
+        cedulas = [10000, 5000, 2000, 1000, 500, 200]   
+        moedas  = [100, 50, 25, 10, 5]                 
+
+        for c in cedulas:
+            qtd = troco // c
+            if qtd:
+                print(f"{qtd} x R${c / 100:.2f}")
+            troco %= c  
+
+        for m in moedas:
+            qtd = troco // m
+            if qtd:
+                print(f"{qtd} x R${m / 100:.2f}")
+            troco %= m  
+
+
+calcular_troco(valor_compra, valor_pago)
